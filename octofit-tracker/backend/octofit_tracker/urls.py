@@ -6,7 +6,6 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.reverse import reverse
 from rest_framework.routers import DefaultRouter
 
 from .views import (
@@ -33,12 +32,13 @@ router.register(r'workouts', WorkoutViewSet)
 
 @api_view(['GET'])
 def api_root(request, format=None):
+    endpoint_base = f"{base_url}/api"
     return Response({
-        'users': reverse('trackeruser-list', request=request, format=format),
-        'teams': reverse('team-list', request=request, format=format),
-        'activities': reverse('activity-list', request=request, format=format),
-        'leaderboard': reverse('leaderboard-list', request=request, format=format),
-        'workouts': reverse('workout-list', request=request, format=format),
+        'users': f"{endpoint_base}/users/",
+        'teams': f"{endpoint_base}/teams/",
+        'activities': f"{endpoint_base}/activities/",
+        'leaderboard': f"{endpoint_base}/leaderboard/",
+        'workouts': f"{endpoint_base}/workouts/",
     })
 
 urlpatterns = [
