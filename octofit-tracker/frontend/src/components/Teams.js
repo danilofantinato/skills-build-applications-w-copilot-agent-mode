@@ -5,11 +5,10 @@ function Teams() {
   const [search, setSearch] = useState('');
   const [selectedTeam, setSelectedTeam] = useState(null);
 
-  const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
-  const baseUrl = codespaceName
-    ? `https://${codespaceName}-8000.app.github.dev`
-    : 'http://localhost:8000';
-  const endpoint = `${baseUrl}/api/teams/`;
+  const codespaceEndpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/teams/`;
+  const endpoint = process.env.REACT_APP_CODESPACE_NAME
+    ? codespaceEndpoint
+    : 'http://localhost:8000/api/teams/';
 
   useEffect(() => {
     console.log('Teams endpoint:', endpoint);

@@ -5,11 +5,10 @@ function Leaderboard() {
   const [search, setSearch] = useState('');
   const [selectedEntry, setSelectedEntry] = useState(null);
 
-  const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
-  const baseUrl = codespaceName
-    ? `https://${codespaceName}-8000.app.github.dev`
-    : 'http://localhost:8000';
-  const endpoint = `${baseUrl}/api/leaderboard/`;
+  const codespaceEndpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`;
+  const endpoint = process.env.REACT_APP_CODESPACE_NAME
+    ? codespaceEndpoint
+    : 'http://localhost:8000/api/leaderboard/';
 
   useEffect(() => {
     console.log('Leaderboard endpoint:', endpoint);

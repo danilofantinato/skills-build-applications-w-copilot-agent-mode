@@ -5,11 +5,10 @@ function Workouts() {
   const [search, setSearch] = useState('');
   const [selectedWorkout, setSelectedWorkout] = useState(null);
 
-  const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
-  const baseUrl = codespaceName
-    ? `https://${codespaceName}-8000.app.github.dev`
-    : 'http://localhost:8000';
-  const endpoint = `${baseUrl}/api/workouts/`;
+  const codespaceEndpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`;
+  const endpoint = process.env.REACT_APP_CODESPACE_NAME
+    ? codespaceEndpoint
+    : 'http://localhost:8000/api/workouts/';
 
   useEffect(() => {
     console.log('Workouts endpoint:', endpoint);

@@ -5,11 +5,10 @@ function Activities() {
   const [search, setSearch] = useState('');
   const [selectedActivity, setSelectedActivity] = useState(null);
 
-  const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
-  const baseUrl = codespaceName
-    ? `https://${codespaceName}-8000.app.github.dev`
-    : 'http://localhost:8000';
-  const endpoint = `${baseUrl}/api/activities/`;
+  const codespaceEndpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/activities/`;
+  const endpoint = process.env.REACT_APP_CODESPACE_NAME
+    ? codespaceEndpoint
+    : 'http://localhost:8000/api/activities/';
 
   useEffect(() => {
     console.log('Activities endpoint:', endpoint);

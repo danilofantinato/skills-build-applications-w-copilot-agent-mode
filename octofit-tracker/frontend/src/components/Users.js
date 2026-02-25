@@ -5,11 +5,10 @@ function Users() {
   const [search, setSearch] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
-  const baseUrl = codespaceName
-    ? `https://${codespaceName}-8000.app.github.dev`
-    : 'http://localhost:8000';
-  const endpoint = `${baseUrl}/api/users/`;
+  const codespaceEndpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/users/`;
+  const endpoint = process.env.REACT_APP_CODESPACE_NAME
+    ? codespaceEndpoint
+    : 'http://localhost:8000/api/users/';
 
   useEffect(() => {
     console.log('Users endpoint:', endpoint);
